@@ -1,4 +1,4 @@
-##Contributions are welcome!
+Contributions are welcome!
 
 Please read the **CONTRIBUTING.md** guide before submitting changes.
 
