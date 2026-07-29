@@ -1,140 +1,91 @@
 # Sentinel
 
-> **An AI-assisted cloud-native secret discovery, governance, and lifecycle management platform.**
+> An AI-assisted cloud-native secret discovery, governance, and lifecycle management platform.
 
-Sentinel is a cloud-native cybersecurity platform designed to continuously discover, classify, analyze, and govern secrets across modern cloud-native environments.
-
-Unlike traditional secret scanners that simply report exposed credentials, Sentinel correlates findings across Git repositories, cloud providers, Kubernetes clusters, and CI/CD pipelines to provide context, ownership, risk assessment, lifecycle tracking, and remediation guidance.
+Sentinel continuously discovers, classifies, analyzes, and governs secrets across modern cloud-native environments. Unlike traditional secret scanners that simply report exposed credentials, Sentinel correlates findings across Git repositories, cloud providers, Kubernetes clusters, and CI/CD pipelines to provide context, ownership, risk assessment, lifecycle tracking, and remediation guidance.
 
 Sentinel is being developed collaboratively using an issue-driven workflow, code reviews, and modern software engineering practices to build a scalable, production-quality security platform.
 
 ---
 
-# Core Features
+## Table of Contents
 
-## Secret Discovery
+- [Core Features](#core-features)
+- [Architecture](#architecture)
+- [Repository Structure](#repository-structure)
+- [Technology Stack](#technology-stack)
+- [Documentation](#documentation)
+- [Evaluation Metrics](#evaluation-metrics)
+- [Project Tracking](#project-tracking)
+- [License](#license)
 
+---
+
+## Core Features
+
+### Secret Discovery
 - Git repository scanning
 - Kubernetes scanning
 - AWS resource scanning
 - CI/CD pipeline scanning
 - Local filesystem scanning
 
----
-
-## Secret Detection
-
+### Secret Detection
 - Regex detection
 - Entropy analysis
 - Context-aware validation
 - Duplicate detection
 - Confidence scoring
 
----
-
-## AI-Assisted Classification
-
+### AI-Assisted Classification
 - Secret type identification
 - False positive reduction
 - Context analysis
 - Severity prediction
 
----
-
-## Governance
-
+### Governance
 - Secret lifecycle tracking
 - Ownership mapping
 - Secret aging
 - Rotation monitoring
 - Compliance reporting
 
----
-
-## Risk Analysis
-
+### Risk Analysis
 - Blast radius analysis
 - Resource relationship mapping
 - Privilege impact analysis
 - Risk scoring
 
----
-
-## Incident Management
-
+### Incident Management
 - Finding correlation
 - Incident grouping
 - Historical tracking
 - Audit logs
 
----
-
-## Security
-
-- JWT Authentication
+### Security
+- JWT authentication
 - RBAC
-- Audit Logging
+- Audit logging
 - TLS
-- Secure API Design
+- Secure API design
 
 ---
 
-# High-Level Architecture
+## Architecture
 
-```
-                    +----------------------+
-                    |  Git Repositories    |
-                    +----------------------+
-                              |
-                    +----------------------+
-                    |     AWS Accounts     |
-                    +----------------------+
-                              |
-                    +----------------------+
-                    | Kubernetes Clusters  |
-                    +----------------------+
-                              |
-                    +----------------------+
-                    |   CI/CD Pipelines    |
-                    +----------+-----------+
-                               |
-                               v
-                  +--------------------------+
-                  |     Scan Engine          |
-                  +------------+-------------+
-                               |
-                    Queue & Background Workers
-                               |
-                               v
-                 +----------------------------+
-                 | Secret Detection Pipeline  |
-                 +------------+---------------+
-                              |
-          +-------------------+--------------------+
-          |                                        |
-          v                                        v
- Context Analysis                         AI Classification
-          |                                        |
-          +-------------------+--------------------+
-                              |
-                              v
-                   Risk & Blast Radius Engine
-                              |
-                              v
-                  Secret Lifecycle Management
-                              |
-                              v
-                        PostgreSQL Database
-                              |
-                              v
-                         FastAPI REST APIs
-                              |
-                              v
-                        Next.js Dashboard
-```
+**Data sources** — Git repositories, AWS accounts, Kubernetes clusters, CI/CD pipelines
+→ **Scan Engine** (queue & background workers)
+→ **Secret Detection Pipeline**
+→ **Context Analysis** + **AI Classification** (parallel)
+→ **Risk & Blast Radius Engine**
+→ **Secret Lifecycle Management**
+→ **PostgreSQL Database**
+→ **FastAPI REST APIs**
+→ **Next.js Dashboard**
 
 ---
-# Repository Structure
+
+## Repository Structure
 
 ```text
 Sentinel/
@@ -151,7 +102,6 @@ Sentinel/
 │   │   ├── workers/
 │   │   ├── utils/
 │   │   └── main.py
-│   │
 │   ├── tests/
 │   └── requirements.txt
 │
@@ -180,52 +130,24 @@ Sentinel/
 
 ---
 
-# Technology Stack
+## Technology Stack
 
-## Backend
-
-- Python
-- FastAPI
-
-## Database
-
-- PostgreSQL
-
-## Frontend
-
-- Next.js
-- React
-- Tailwind CSS
-
-## Cloud
-
-- AWS
-
-## Infrastructure
-
-- Docker
-- Kubernetes
-- Terraform
-
-## Security
-
-- JWT Authentication
-- Role-Based Access Control (RBAC)
-
-## Monitoring
-
-- Prometheus
-- Grafana
-
-## CI/CD
-
-- GitHub Actions
+| Category | Tools |
+|---|---|
+| Backend | Python, FastAPI |
+| Database | PostgreSQL |
+| Frontend | Next.js, React, Tailwind CSS |
+| Cloud | AWS |
+| Infrastructure | Docker, Kubernetes, Terraform |
+| Security | JWT Authentication, RBAC |
+| Monitoring | Prometheus, Grafana |
+| CI/CD | GitHub Actions |
 
 ---
 
-# Documentation
+## Documentation
 
-The project's documentation is located in the `docs/` directory.
+Full documentation lives in the `docs/` directory:
 
 | Document | Description |
 |----------|-------------|
@@ -239,7 +161,7 @@ The project's documentation is located in the `docs/` directory.
 
 ---
 
-# Evaluation Metrics
+## Evaluation Metrics
 
 | Metric | Description |
 |----------|-------------|
@@ -257,7 +179,7 @@ The project's documentation is located in the `docs/` directory.
 
 ## Project Tracking
 
-Project progress is tracked through:
+Progress is tracked through:
 
 - GitHub Issues
 - Pull Requests
@@ -266,8 +188,6 @@ Project progress is tracked through:
 
 ---
 
-# License
+## License
 
-This project is licensed under the **Apache License 2.0**.
-
-You are free to use, modify, and distribute this software in accordance with the terms of the license. See the [LICENSE](LICENSE) file for the full license text.
+This project is licensed under the **Apache License 2.0**. You are free to use, modify, and distribute this software in accordance with the terms of the license. See the [LICENSE](LICENSE) file for the full license text.
