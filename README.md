@@ -1,173 +1,241 @@
 # Sentinel
 
-> **A cloud-native AI-assisted cybersecurity detection and response platform.**
+> **An AI-assisted cloud-native secret discovery, governance, and lifecycle management platform.**
 
-Sentinel is a cloud-native cybersecurity platform designed to monitor, detect, analyze, and respond to security threats across modern cloud infrastructures. By combining real-time monitoring, intelligent threat detection, event correlation, and automated incident response, Sentinel provides organizations with enhanced visibility into their security posture while reducing incident response time.
+Sentinel is a cloud-native cybersecurity platform designed to continuously discover, classify, analyze, and govern secrets across modern cloud-native environments.
 
----
+Unlike traditional secret scanners that simply report exposed credentials, Sentinel correlates findings across Git repositories, cloud providers, Kubernetes clusters, and CI/CD pipelines to provide context, ownership, risk assessment, lifecycle tracking, and remediation guidance.
 
-# Overview
-
-Modern cloud environments generate massive volumes of logs, metrics, and security events every second. Traditional monitoring solutions often produce isolated alerts without sufficient context, making it difficult for security teams to identify genuine threats quickly.
-
-Sentinel addresses these challenges by continuously collecting telemetry from cloud resources, correlating related security events, prioritizing incidents based on risk, and enabling automated response workflows through a centralized platform.
+Sentinel is being developed collaboratively using an issue-driven workflow, code reviews, and modern software engineering practices to build a scalable, production-quality security platform.
 
 ---
 
-# Key Features
+# Core Features
 
-- Real-time cloud infrastructure monitoring
-- Intelligent threat detection and alerting
-- Security event correlation
-- Risk scoring and incident prioritization
-- Automated incident response workflows
-- Centralized security dashboard
-- Role-Based Access Control (RBAC)
-- Secure authentication and authorization
-- Comprehensive audit logging
-- Cloud-native scalable architecture
+## Secret Discovery
+
+- Git repository scanning
+- Kubernetes scanning
+- AWS resource scanning
+- CI/CD pipeline scanning
+- Local filesystem scanning
 
 ---
 
-# Objectives
+## Secret Detection
 
-- Detect security threats in real time
-- Reduce Mean Time To Detect (MTTD)
-- Reduce Mean Time To Respond (MTTR)
-- Improve overall cloud security posture
-- Minimize false positives
-- Provide centralized security visibility
-- Enable automated incident response
-- Support scalable cloud deployments
+- Regex detection
+- Entropy analysis
+- Context-aware validation
+- Duplicate detection
+- Confidence scoring
 
 ---
 
-# Proposed Architecture
+## AI-Assisted Classification
+
+- Secret type identification
+- False positive reduction
+- Context analysis
+- Severity prediction
+
+---
+
+## Governance
+
+- Secret lifecycle tracking
+- Ownership mapping
+- Secret aging
+- Rotation monitoring
+- Compliance reporting
+
+---
+
+## Risk Analysis
+
+- Blast radius analysis
+- Resource relationship mapping
+- Privilege impact analysis
+- Risk scoring
+
+---
+
+## Incident Management
+
+- Finding correlation
+- Incident grouping
+- Historical tracking
+- Audit logs
+
+---
+
+## Security
+
+- JWT Authentication
+- RBAC
+- Audit Logging
+- TLS
+- Secure API Design
+
+---
+
+# High-Level Architecture
+
+```
+                    +----------------------+
+                    |  Git Repositories    |
+                    +----------------------+
+                              |
+                    +----------------------+
+                    |     AWS Accounts     |
+                    +----------------------+
+                              |
+                    +----------------------+
+                    | Kubernetes Clusters  |
+                    +----------------------+
+                              |
+                    +----------------------+
+                    |   CI/CD Pipelines    |
+                    +----------+-----------+
+                               |
+                               v
+                  +--------------------------+
+                  |     Scan Engine          |
+                  +------------+-------------+
+                               |
+                    Queue & Background Workers
+                               |
+                               v
+                 +----------------------------+
+                 | Secret Detection Pipeline  |
+                 +------------+---------------+
+                              |
+          +-------------------+--------------------+
+          |                                        |
+          v                                        v
+ Context Analysis                         AI Classification
+          |                                        |
+          +-------------------+--------------------+
+                              |
+                              v
+                   Risk & Blast Radius Engine
+                              |
+                              v
+                  Secret Lifecycle Management
+                              |
+                              v
+                        PostgreSQL Database
+                              |
+                              v
+                         FastAPI REST APIs
+                              |
+                              v
+                        Next.js Dashboard
+```
+
+---
+# Repository Structure
 
 ```text
-                +----------------------+
-                |    Cloud Resources   |
-                +----------+-----------+
-                           |
-                    Log Collection
-                           |
-                           v
-               +-----------------------+
-               | Data Ingestion Layer  |
-               +-----------+-----------+
-                           |
-               Event Processing Pipeline
-                           |
-                           v
-               +-----------------------+
-               | Detection Engine      |
-               +-----------+-----------+
-                           |
-          +----------------+----------------+
-          |                                 |
-          v                                 v
- Threat Correlation               Risk Analysis
-          |                                 |
-          +----------------+----------------+
-                           |
-                           v
-                Incident Management
-                           |
-          +----------------+----------------+
-          |                                 |
-          v                                 v
- Automated Response             Security Dashboard
+Sentinel/
+│
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   ├── core/
+│   │   ├── db/
+│   │   ├── models/
+│   │   ├── schemas/
+│   │   ├── services/
+│   │   ├── scanners/
+│   │   ├── workers/
+│   │   ├── utils/
+│   │   └── main.py
+│   │
+│   ├── tests/
+│   └── requirements.txt
+│
+├── frontend/
+│
+├── infrastructure/
+│   ├── docker/
+│   ├── kubernetes/
+│   └── terraform/
+│
+├── docs/
+│   ├── architecture.md
+│   ├── roadmap.md
+│   ├── api.md
+│   ├── database.md
+│   ├── scanners.md
+│   ├── deployment.md
+│   └── decisions.md
+│
+├── .github/
+│
+├── README.md
+├── CONTRIBUTING.md
+└── LICENSE
 ```
 
 ---
 
 # Technology Stack
 
-### Backend
+## Backend
 
 - Python
 - FastAPI
 
-### Frontend
+## Database
+
+- PostgreSQL
+
+## Frontend
 
 - Next.js
 - React
 - Tailwind CSS
 
-### Database
-
-- PostgreSQL
-
-### Cloud Platform
+## Cloud
 
 - AWS
 
-### Containerization & Orchestration
+## Infrastructure
 
 - Docker
 - Kubernetes
+- Terraform
 
-### Monitoring & Observability
+## Security
+
+- JWT Authentication
+- Role-Based Access Control (RBAC)
+
+## Monitoring
 
 - Prometheus
 - Grafana
 
-### Security
-
-- JWT Authentication
-- Role-Based Access Control (RBAC)
-- TLS Encryption
-
-### CI/CD
+## CI/CD
 
 - GitHub Actions
 
 ---
 
-# Project Structure
+# Documentation
 
-```text
-Sentinel/
-│
-├── backend/
-│   ├── api/
-│   ├── services/
-│   ├── detection/
-│   ├── response/
-│   ├── models/
-│   └── utils/
-│
-├── frontend/
-│   ├── app/
-│   ├── components/
-│   ├── pages/
-│   └── styles/
-│
-├── infrastructure/
-│   ├── kubernetes/
-│   ├── docker/
-│   └── terraform/
-│
-├── monitoring/
-│   ├── prometheus/
-│   └── grafana/
-│
-├── docs/
-├── tests/
-└── README.md
-```
+The project's documentation is located in the `docs/` directory.
 
----
-
-# System Workflow
-
-1. Collect logs, metrics, and telemetry from cloud resources.
-2. Normalize and preprocess incoming security events.
-3. Detect suspicious behavior using security rules and detection models.
-4. Correlate related events into security incidents.
-5. Assess incident severity through risk analysis.
-6. Execute automated or manual response workflows.
-7. Visualize alerts, incidents, and security posture through a centralized dashboard.
+| Document | Description |
+|----------|-------------|
+| `architecture.md` | Overall system architecture and component interactions |
+| `roadmap.md` | Development roadmap, milestones, and project progress |
+| `api.md` | Backend API overview and endpoints |
+| `database.md` | Database schema and relationships |
+| `scanners.md` | Scanner architecture and supported integrations |
+| `deployment.md` | Local development and deployment guide |
+| `decisions.md` | Important architectural and design decisions |
 
 ---
 
@@ -175,63 +243,31 @@ Sentinel/
 
 | Metric | Description |
 |----------|-------------|
-| Detection Accuracy | Percentage of correctly identified threats |
-| Precision | Ratio of true positive detections |
-| Recall | Ability to detect actual attacks |
-| F1 Score | Balance between precision and recall |
-| False Positive Rate | Percentage of incorrect alerts |
+| Precision | Correctly identified secrets |
+| Recall | Coverage of exposed secrets |
+| F1 Score | Precision/Recall balance |
+| False Positive Rate | Incorrect detections |
+| Scan Duration | Total scan execution time |
+| Detection Accuracy | Overall detection quality |
 | MTTD | Mean Time To Detect |
 | MTTR | Mean Time To Respond |
-| Blast Radius Coverage | Coverage of affected cloud resources |
+| Blast Radius Coverage | Resource impact coverage |
 
 ---
 
-# Future Enhancements
+## Project Tracking
 
-- AI-driven anomaly detection
-- Threat intelligence integration
-- Behavioral analytics
-- Multi-cloud support (AWS, Azure, GCP)
-- Automated attack path analysis
-- SOAR integration
-- Compliance reporting
-- Predictive threat analytics
+Project progress is tracked through:
 
----
-
-# Limitations
-
-- Initial implementation focuses on cloud-native environments.
-- Detection quality depends on the availability and quality of telemetry.
-- Advanced zero-day threats may require additional behavioral analysis models.
-- Automated response workflows require carefully defined organizational policies.
-
----
-
-# Future Scope
-
-Future releases of Sentinel aim to include:
-
-- Advanced machine learning–based threat detection
-- Adaptive security policies
-- Enhanced automation playbooks
-- Enterprise-scale deployment capabilities
-- Expanded cloud provider support
-- Standardized benchmarking using cybersecurity datasets and performance metrics
-
----
-
-# Contributing
-
-Contributions are welcome.
-
-1. Fork the repository.
-2. Create a feature branch.
-3. Commit your changes.
-4. Submit a Pull Request.
+- GitHub Issues
+- Pull Requests
+- Project Board
+- `docs/roadmap.md`
 
 ---
 
 # License
 
-This project is licensed under the MIT License.
+This project is licensed under the **Apache License 2.0**.
+
+You are free to use, modify, and distribute this software in accordance with the terms of the license. See the [LICENSE](LICENSE) file for the full license text.
