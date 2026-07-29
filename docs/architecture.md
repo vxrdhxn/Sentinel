@@ -34,7 +34,7 @@ Each component has a clearly defined responsibility and avoids overlapping funct
 
 ### API-First Design
 
-All core functionality is exposed through well-defined REST APIs. This enables multiple clients—including web applications, command-line tools, and future third-party integrations—to interact with Sentinel through a consistent interface.
+All core functionality is exposed through well-defined REST APIs. This enables multiple clients-including web applications, command-line tools, and future third-party integrations-to interact with Sentinel through a consistent interface.
 
 ### Cloud-Native Architecture
 
