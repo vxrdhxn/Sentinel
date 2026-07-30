@@ -4,14 +4,6 @@ This document tracks the implementation progress of Sentinel.
 
 Tasks are organized by major development phases and represent the work required to build the platform. As development progresses, completed tasks should be marked accordingly and new tasks may be added as the project evolves.
 
-## Legend
-
-- [ ] Not Started
-  [~] In Progress
-- [x] Completed
-  [-] Blocked
-
----
 
 # Phase 1 : Project Foundation
 
