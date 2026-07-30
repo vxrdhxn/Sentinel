@@ -7,9 +7,9 @@ Tasks are organized by major development phases and represent the work required 
 ## Legend
 
 - [ ] Not Started
-- [~] In Progress
+  [~] In Progress
 - [x] Completed
-- [-] Blocked
+  [-] Blocked
 
 ---
 
@@ -24,7 +24,7 @@ Tasks are organized by major development phases and represent the work required 
 - [x] Add CONTRIBUTING guide
 - [x] Write Architecture documentation
 - [x] Write Roadmap
-- [~] Create Development Tasks
+- [X] Create Development Tasks
 
 ## Development Environment
 
