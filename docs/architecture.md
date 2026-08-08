@@ -2,7 +2,7 @@
 
 ## Overview
 
-Sentinel is an AI-Assisted cloud-native secret discovery, governance, and life cycle management platform.
+Sentinel is an cloud-native secret discovery, governance, and life cycle management platform.
 
 It is a cloud-native cybersecurity platform designed to continuously discover, classify, analyze, and govern secrets across modern cloud-native environments.
 
