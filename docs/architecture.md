@@ -2,11 +2,11 @@
 
 ## Overview
 
-Sentinel is an cloud-native secret discovery, governance, and life cycle management platform.
+Sentinel is an cloud-native secret discovery, governance, and lifecycle management platform.
 
 It is a cloud-native cybersecurity platform designed to continuously discover, classify, analyze, and govern secrets across modern cloud-native environments.
 
-Unlike traditional secret scanners that simply report exposed credentials, Sentinel correlates findings across Git repositories, cloud providers, kubernetes clusters, and CI/CD pipelines to provide context, ownership, risk assessment, lifecycle tracking, and remedation guidance.
+Unlike traditional secret scanners that simply report exposed credentials, Sentinel correlates findings across Git repositories, cloud providers, Kubernetes clusters, and CI/CD pipelines to provide context, ownership, risk assessment, lifecycle tracking, and remediation guidance.
 
 Sentinel is being developed collaboratively using issue-driven workflow, code reviews, and modern software engineering practices to build a scalable, production-quality security platform.
 
@@ -34,7 +34,7 @@ Each component has a clearly defined responsibility and avoids overlapping funct
 
 ### API-First Design
 
-All core functionality is exposed through well-defined REST APIs. This enables multiple clients-including web applications, command-line tools, and future third-party integrations-to interact with Sentinel through a consistent interface.
+All core functionality is exposed through well-defined REST APIs. This enables multiple clients including web applications, command-line tools, and future third-party integrations-to interact with Sentinel through a consistent interface.
 
 ### Cloud-Native Architecture
 
@@ -60,6 +60,8 @@ Code should be written with readability, consistency, and long-term maintenance 
 
 The project should be approachable for contributors with varying levels of experience. Clear documentation, consistent coding standards, transparent decision-making, and predictable project organization encourage community participation and long-term sustainability.
 
+---
+
 ## Problem Statement
 
 Modern cloud-native applications depend on a large number of credentials, API keys, access tokens, certificates, and other secrets to communicate with applications, cloud services, databases, CI/CD systems, and infrastructure.
@@ -69,3 +71,171 @@ As development environments become distributed across Git repositories, cloud pl
 Existing secret scanning tools are effective at detecting many types of exposed credentials, but detection alone does not provide the complete context required for effective secret governance. Security teams need to understand the severity, ownership, relationships, lifecycle state, and potential impact of a finding.
 
 Sentinel addresses this gap by combining secret discovery with contextual analysis, risk assessment, ownership information, and lifecycle-oriented governance across cloud-native environments.
+
+---
+
+## Goals
+
+Sentinel aims to:
+
+- Discover exposed secrets across multiple development and
+  cloud-native environments.
+- Normalize findings from different sources into a common format.
+- Classify discovered secrets based on their type and context.
+- Assess the risk associated with individual findings.
+- Provide ownership and contextual information for discovered secrets.
+- Track the lifecycle of secrets and security findings.
+- Provide remediation guidance for security findings.
+- Provide a centralized interface for security teams to review
+  and manage findings.
+- Support the addition of new scanners and integrations without
+  requiring major changes to the core platform.
+
+---
+
+## MVP Scope
+
+The MVP will demonstrate an end-to-end secret discovery and
+governance workflow.
+
+### Included
+
+- User authentication.
+- Local repository/directory scanning.
+- Secret detection using configurable detection rules.
+- Finding normalization.
+- Basic secret classification.
+- Risk assessment.
+- Persistent storage of scan results and findings.
+- REST API for accessing scan and finding information.
+- Web dashboard for viewing and filtering findings.
+
+### Planned Extensions
+
+- GitHub repository scanning.
+- Cloud provider integrations.
+- Kubernetes scanning.
+- CI/CD integrations.
+- Advanced contextual classification.
+- Ownership inference.
+- Blast radius analysis.
+- Secret lifecycle tracking.
+- Remediation workflows.
+
+---
+
+## High-Level Architecture
+
+Sentinel follows a modular architecture in which source-specific
+scanners collect potential secrets, analysis components process and
+enrich the resulting findings, and the backend provides a unified
+interface for storage and presentation.
+
+At a high level, the system consists of:
+
+1. Client Layer
+2. API Layer
+3. Scanning Layer
+4. Analysis Layer
+5. Governance Layer
+6. Persistence Layer
+
+                    ┌──────────────┐
+                    │     User     │
+                    └──────┬───────┘
+                           │
+                           ▼
+                    ┌──────────────┐
+                    │   Next.js    │
+                    │  Dashboard   │
+                    └──────┬───────┘
+                           │
+                           ▼
+                    ┌──────────────┐
+                    │   FastAPI    │
+                    │     API      │
+                    └──────┬───────┘
+                           │
+              ┌────────────┼────────────┐
+              ▼            ▼            ▼
+         ┌─────────┐ ┌───────────┐ ┌──────────┐
+         │Scanner  │ │ Analysis  │ │Governance│
+         │ Engine  │ │  Engine   │ │  Engine  │
+         └────┬────┘ └─────┬─────┘ └────┬─────┘
+              │            │             │
+              └────────────┼─────────────┘
+                           ▼
+                    ┌──────────────┐
+                    │ PostgreSQL   │
+                    └──────────────┘
+
+---
+
+## Core Components
+
+### Client Layer
+
+The client layer provides the web interface through which users
+authenticate, initiate scans, view findings, and interact with
+Sentinel.
+
+### API Layer
+
+The API layer exposes Sentinel's functionality through REST APIs
+and acts as the boundary between clients and backend services.
+
+### Scanner Engine
+
+The scanner engine is responsible for collecting data from
+supported sources and identifying content that should be analyzed.
+
+The scanner architecture is designed around a common interface so
+that additional sources can be integrated independently.
+
+Initial sources will focus on local repositories and directories,
+with GitHub, cloud providers, Kubernetes, and CI/CD systems planned
+as extensions.
+
+### Analysis Engine
+
+The analysis layer processes scanner output and enriches findings
+with information such as secret type, confidence, and contextual
+metadata.
+
+### Risk Engine
+
+The risk engine evaluates findings using contextual information and
+assigns a risk level to help prioritize security findings.
+
+### Governance Layer
+
+The governance layer maintains ownership, lifecycle information,
+remediation status, and other management metadata associated with
+findings.
+
+### Persistence Layer
+
+The persistence layer stores users, scan information, findings,
+metadata, and governance information in PostgreSQL.
+
+---
+
+## Data Flow
+
+A typical scanning workflow follows these stages:
+
+1. A user initiates a scan through the web interface.
+2. The frontend sends the scan request to the backend API.
+3. The API validates the request and starts the appropriate scanner.
+4. The scanner collects data from the selected source.
+5. The detection engine identifies potential secrets.
+6. Detected secrets are converted into normalized findings.
+7. The analysis layer classifies and enriches the findings.
+8. The risk engine evaluates the findings.
+9. Governance metadata is associated with the findings where available.
+10. The resulting scan and finding information is persisted.
+11. The API exposes the results to the frontend.
+12. The dashboard presents the findings to the user.
+
+---
+
