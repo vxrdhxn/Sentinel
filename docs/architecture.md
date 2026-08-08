@@ -59,3 +59,13 @@ Code should be written with readability, consistency, and long-term maintenance 
 ### Open Source Collaboration
 
 The project should be approachable for contributors with varying levels of experience. Clear documentation, consistent coding standards, transparent decision-making, and predictable project organization encourage community participation and long-term sustainability.
+
+## Problem Statement
+
+Modern cloud-native applications depend on a large number of credentials, API keys, access tokens, certificates, and other secrets to communicate with applications, cloud services, databases, CI/CD systems, and infrastructure.
+
+As development environments become distributed across Git repositories, cloud platforms, Kubernetes clusters, and CI/CD pipelines, secrets can become scattered across multiple systems. This makes it difficult to maintain a centralized understanding of where secrets exist, who owns them, how they are being used, and what impact their exposure may have.
+
+Existing secret scanning tools are effective at detecting many types of exposed credentials, but detection alone does not provide the complete context required for effective secret governance. Security teams need to understand the severity, ownership, relationships, lifecycle state, and potential impact of a finding.
+
+Sentinel addresses this gap by combining secret discovery with contextual analysis, risk assessment, ownership information, and lifecycle-oriented governance across cloud-native environments.
