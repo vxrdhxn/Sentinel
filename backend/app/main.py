@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 
+from backend.app.config import settings
+
 app = FastAPI(
-    title="Sentinel API",
-    version="0.1.0",
+    title="Sentinel",
+    debug=settings.environment == "development",
 )
 
 
