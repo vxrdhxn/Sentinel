@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from backend.app.scanners.models import RawSecretType, ScannerMetadata, ScanInput, ScanResult
+from backend.app.scanners.models import RawSecretType, ScanInput, ScannerMetadata, ScanResult
 
 
 class DummyScanner:

@@ -230,6 +230,18 @@ Sentinel.
 The API layer exposes Sentinel's functionality through REST APIs
 and acts as the boundary between clients and backend services.
 
+## Classification & Normalization
+
+Converts raw scanner output into Sentinel's internal representation:
+`backend/app/classification/`
+- `taxonomy.py` — deterministic mapping from RawSecretType (scanner) to SecretType (domain model);
+  unrecognized raw types fall back to GENERIC_CREDENTIAL rather than failing
+- `models.py` — `NormalizedFinding`, the output shape compatible with Secret/Finding
+- `normalizer.py` — `normalize_scan_result()`, converts a ScanResult into a NormalizedFinding,
+  including splitting a "file.py:42" location string into file_path + line_number
+
+This layer is pure transformation — no persistence, no risk scoring, no API concerns.
+
 ### Scanner Engine
 
 The scanner engine is responsible for collecting data from
