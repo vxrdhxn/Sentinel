@@ -210,6 +210,15 @@ If `ruff format --check` fails, auto-fix with:
 
     uv run ruff format .
 
+## API Routing
+
+Versioned API routes live under `backend/app/api/`:
+- `backend/app/api/router.py` — central router, mounts versioned sub-routers
+- `backend/app/api/v1/router.py` — v1 endpoints, mounted at `/api/v1`
+
+New v1 endpoints go in `backend/app/api/v1/router.py`. Future versions (v2, etc.)
+get their own package under `backend/app/api/`, registered in `api/router.py`.
+
 ### Client Layer
 
 The client layer provides the web interface through which users
