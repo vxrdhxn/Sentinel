@@ -12,6 +12,25 @@ Sentinel is being developed collaboratively using issue-driven workflow, code re
 
 ---
 
+
+## Database Layer
+
+Database access goes through `backend/app/database.py`:
+- `engine` / `SessionLocal` are configured from `settings.database_url` (backend/app/config.py)
+- Use the `get_db()` generator as a FastAPI dependency to get a request-scoped session
+- `check_database_connection()` is used by the `/health` endpoint to verify connectivity
+
+### Local development
+Start Postgres via Docker:
+    docker compose up -d
+Copy `.env.example` to `.env` and set `DATABASE_URL` to match your Postgres port
+(default container port 5432, but check for local Postgres conflicts — see below)
+
+**Note:** if you have a local Postgres installation also running on port 5432,
+the Docker container will conflict. Either stop the local service or remap the
+container port (e.g. `5433:5432` in docker-compose.yml) and update `DATABASE_URL` accordingly.
+
+
 ## Design Principles
 
 The architecture of Sentinel is guided by a set of core design principles that prioritize maintainability, extensibility, security, and scalability. These principles influence every major architectural and implementation decision throughout the project.

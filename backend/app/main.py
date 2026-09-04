@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
 from backend.app.config import settings
+from backend.app.database import check_database_connection
 
 app = FastAPI(
     title="Sentinel",
@@ -10,4 +11,8 @@ app = FastAPI(
 
 @app.get("/health")
 def health_check() -> dict[str, str]:
-    return {"status": "ok"}
+    db_ok = check_database_connection()
+    return {
+        "status": "ok" if db_ok else "degraded",
+        "database": "connected" if db_ok else "unreachable",
+    }
