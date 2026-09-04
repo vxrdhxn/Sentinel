@@ -242,21 +242,6 @@ Converts raw scanner output into Sentinel's internal representation:
 
 This layer is pure transformation — no persistence, no risk scoring, no API concerns.
 
-## Findings API
-
-`GET /api/v1/findings` — paginated list, optional filters: severity, status, source, repository
-`GET /api/v1/findings/{finding_id}` — single finding, 404 if not found
-
-Implementation:
-- `backend/app/api/v1/schemas/finding.py` — FindingResponse / FindingListResponse (Pydantic,
-  excludes secret material)
-- `backend/app/api/v1/findings.py` — router, uses FindingRepository for all queries (no raw
-  SQLAlchemy in the router)
-- `FindingRepository.list_filtered()` — filtering + pagination, returns (items, total_count)
-
-Pagination defaults: limit=50, max=200, offset=0.
-
-
 ### Scanner Engine
 
 The scanner engine is responsible for collecting data from
