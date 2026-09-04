@@ -192,6 +192,24 @@ At a high level, the system consists of:
 
 ## Core Components
 
+## Continuous Integration
+
+Every pull request targeting `main` runs automated checks via GitHub Actions
+(`.github/workflows/backend-ci.yml`):
+- `ruff check` — lint
+- `ruff format --check` — formatting
+- `pytest` — test suite
+
+All checks must pass before a PR can be merged. Run them locally before pushing:
+
+    uv run ruff check .
+    uv run ruff format --check .
+    uv run pytest -v
+
+If `ruff format --check` fails, auto-fix with:
+
+    uv run ruff format .
+
 ### Client Layer
 
 The client layer provides the web interface through which users
