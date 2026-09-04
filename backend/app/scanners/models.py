@@ -6,7 +6,7 @@ from typing import Any
 from pydantic import BaseModel, Field
 
 
-class SecretType(str, Enum):
+class RawSecretType(str, Enum):
     AWS_KEY = "aws_key"
     GITHUB_TOKEN = "github_token"
     SLACK_TOKEN = "slack_token"
@@ -35,7 +35,7 @@ class ScannerMetadata(BaseModel):
 class ScanResult(BaseModel):
     """Normalized output contract for a single detection."""
 
-    secret_type: SecretType
+    secret_type: RawSecretType
     source: str = Field(..., description="Where this was found, e.g. repo name")
     location: str = Field(..., description="File path, line number, or commit ref")
     confidence: float = Field(..., ge=0.0, le=1.0)

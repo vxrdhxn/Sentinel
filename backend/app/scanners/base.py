@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Protocol, runtime_checkable
 
-from app.scanners.models import ScanInput, ScanResult
+from backend.app.scanners.models import ScanInput, ScanResult
 
 
 @runtime_checkable

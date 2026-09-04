@@ -1,6 +1,6 @@
-from app.scanners.base import Scanner
-from app.scanners.dummy import DummyScanner
-from app.scanners.models import ScanInput, ScanResult
+from backend.app.scanners.base import Scanner
+from backend.app.scanners.dummy import DummyScanner
+from backend.app.scanners.models import ScanInput, ScanResult
 
 
 def test_scan_input_validates():
