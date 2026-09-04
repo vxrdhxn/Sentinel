@@ -1,9 +1,12 @@
+import logging
 from collections.abc import Generator
 
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session, sessionmaker
 
 from backend.app.config import settings
+
+logger = logging.getLogger(__name__)
 
 engine = create_engine(settings.database_url, pool_pre_ping=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -23,4 +26,5 @@ def check_database_connection() -> bool:
             conn.execute(text("SELECT 1"))
         return True
     except Exception:
+        logger.exception("Database connection check failed")
         return False
