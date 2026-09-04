@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from app.scanners.models import ScanInput, ScannerMetadata, ScanResult, SecretType
+from backend.app.scanners.models import RawSecretType, ScannerMetadata, ScanInput, ScanResult
 
 
 class DummyScanner:
@@ -9,7 +9,7 @@ class DummyScanner:
     def scan(self, scan_input: ScanInput) -> list[ScanResult]:
         return [
             ScanResult(
-                secret_type=SecretType.UNKNOWN,
+                secret_type=RawSecretType.UNKNOWN,
                 source=scan_input.target_id,
                 location=scan_input.source_path or "unknown",
                 confidence=0.5,
