@@ -253,6 +253,17 @@ metadata.
 The risk engine evaluates findings using contextual information and
 assigns a risk level to help prioritize security findings.
 
+## Repository Layer
+
+Persistence logic lives in `backend/app/repositories/`:
+- `base.py` — `BaseRepository[ModelT]` with shared CRUD (get_by_id, list_all, add, delete)
+- `secret_repository.py` — `SecretRepository`, adds `get_by_fingerprint`
+- `finding_repository.py` — `FindingRepository`, adds `list_by_secret`, `list_by_status`
+
+Repositories take an existing `Session` (never create their own engine/session)
+and don't commit — the caller owns the transaction boundary. Business rules
+(e.g. risk decisions) belong in a service layer above this, not here.
+
 ### Governance Layer
 
 The governance layer maintains ownership, lifecycle information,
